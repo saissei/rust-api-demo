@@ -1,0 +1,2 @@
+nightly-x86_64-apple-darwin
+rocket_contrib = { version = "0.4", features = ["json"] }

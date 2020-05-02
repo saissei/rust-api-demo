@@ -1,5 +1,5 @@
 use rocket_contrib::json::Json;
-use crate::models::Todo;
+use crate::models::mdl_todo;
 
 #[get("/")]
 pub fn index() -> &'static str {
@@ -7,27 +7,27 @@ pub fn index() -> &'static str {
 }
 
 #[get("/todos")]
-pub fn todos() -> JSON<Vec<Todo>> {
-  Json(vec![Todo {
+pub fn todos() -> Json<Vec<mdl_todo::Todo>> {
+  return Json(vec![mdl_todo::Todo {
     id: 1,
     title: "Read Rocket Tutorial".into(),
     description: "Read https://rocket.rs/guide/quickstart/".into(),
     done: false
-  }])
+  }]);
 }
 
 #[post("/todos", data = "<todo>")]
-pub fn newTodo(todo: Json<Todo>) -> String {
-  format!("Accepted post request! {:?}", todo.0)
+pub fn new_todo(todo: Json<mdl_todo::Todo>) -> String {
+  return format!("Accepted post request! {:?}", todo.0)
 }
 
-#[get("/todos/<todoid>")]
-pub fn todoById(todoId: u32) -> String {
-  let todo = Todo {
+#[get("/todos/<_todo_id>")]
+pub fn todo_by_id(_todo_id: u32) -> String {
+  let todo = mdl_todo::Todo {
     id: 1,
     title: "Read Rocket Tutorial".into(),
     description: "Read https://rocket.rs/guide/quickstart/".into(),
     done: false
-  }
-  format!("{:?}", todo)
+  };
+  return format!("{:?}", todo);
 }
